@@ -1,0 +1,150 @@
+import React, { useState } from "react";
+// import { useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { getEmailFromCrypto, REGEX } from "../_utils/auth/auth.functions";
+import { userModified } from "../_utils/toasts/users";
+
+const EditAccount = ({ ...account }) => {
+  const { id } = useParams();
+  const [emailValue, setEmailValue] = useState(
+    getEmailFromCrypto(account.email)
+  );
+  const [passwordValue, setPasswordValue] = useState("");
+  const [firstnameValue, setFirstnameValue] = useState(account.name);
+  const [surnameValue, setSurnameValue] = useState(account.surname);
+  // const history = useHistory();
+
+  const SendData = (e) => {
+    e.preventDefault();
+    console.log(firstnameValue, surnameValue);
+    //useEffect(() => {
+    // POST request using fetch inside useEffect React hook
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({
+        name: firstnameValue,
+        surname: surnameValue,
+        email: emailValue,
+        password: passwordValue,
+      }),
+    };
+    fetch(`http://localhost:3000/api/auth/account/${id}`, requestOptions)
+      .then((response) => {
+        console.log(response.json());
+        if (response.ok) {
+          userModified();
+          account.onPost();
+        }
+      })
+
+      //.then((response) => response.json())
+      .catch((error) => console.log(error));
+
+    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+    // }, []);
+  };
+  return (
+    <div className="col-11 mb-3">
+      <div className="card">
+        <div className="card-header">
+          <div className="justify-content-between align-items-center">
+            <div className="justify-content-between align-items-center">
+              <div className="ml-2">
+                <div className="h5 m-0">@{account.name}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="card-body">
+          <h5 className="card-title text-center">Edit Profile</h5>
+
+          <form onSubmit={SendData}>
+            <div className="form-group">
+              <label htmlFor="nom">nom</label>
+              <input
+                id="nom"
+                name="nom"
+                type="text"
+                className="form-control"
+                placeholder="Nom"
+                pattern={REGEX.NAME_REGEX}
+                value={firstnameValue}
+                required
+                onChange={(event) => setFirstnameValue(event.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="prenom">Prénom</label>
+              <input
+                id="prenom"
+                name="prenom"
+                type="text"
+                className="form-control"
+                placeholder="Prénom"
+                pattern={REGEX.SURNAME_REGEX}
+                value={surnameValue}
+                required
+                onChange={(event) => setSurnameValue(event.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Adresse email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                className="form-control"
+                aria-describedby="emailHelp"
+                placeholder="Enter email"
+                value={emailValue}
+                onChange={(event) => setEmailValue(event.target.value)}
+              />
+              <small id="emailHelp" className="form-text text-muted">
+                We'll never share your email with anyone else.
+              </small>
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                className="form-control"
+                placeholder="Password"
+                pattern={REGEX.PASSWORD_REGEX}
+                title="Minimum de 4 lettres et 1 chiffre"
+                value={passwordValue}
+                onChange={(event) => setPasswordValue(event.target.value)}
+              />
+            </div>
+
+            <button type="submit" className="btn btn-primary">
+              Edit
+            </button>
+          </form>
+        </div>
+        <div className="card-footer">
+          {/* <a href="#" className="card-link">
+            <i className="fa fa-gittip"></i> Like
+          </a>
+          <a href="#" className="card-link">
+            <i className="fa fa-comment"></i> Comment
+          </a>
+          <a href="#" className="card-link">
+            <i className="fa fa-mail-forward"></i> Share
+          </a> */}
+
+          {/* {account.canEdit === true && (
+            <a href="" className="card-link">
+              <i className="fa fa-ban"></i> Erase
+            </a>
+          )} */}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default EditAccount;
