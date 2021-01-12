@@ -6,7 +6,6 @@ import 'react-toastify/dist/ReactToastify.css';
 const PostMessage = ({ onPost }) => {
   const [titleValue, setTitleValue] = useState("");
   const [contentValue, setContentValue] = useState("");
-  // const notify = () => toast.success("Messages posté !");
 
   async function SendData(e){
     e.preventDefault();

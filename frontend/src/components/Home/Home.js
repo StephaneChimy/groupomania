@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Component } from "react";
-import TeaserMessage from "../Messages/TeaserMessage";
+// import TeaserMessage from "../Messages/TeaserMessage";
+import Message from "../Messages/Message";
 import PostMessage from "../Messages/PostMessage";
 import { getMessages } from "../_utils/messages/messages.functions";
 import FadeIn from "react-fade-in";
@@ -69,7 +70,7 @@ const Home = () => {
             <section className="row justify-content-center">
               {messages.map((message) => (
                   <FadeIn key={message.id} className="col-11 mb-3" transitionDuration={2000}>
-                    <TeaserMessage {...message} />
+                    <Message {...message} teaserMessage={true} />
                   </FadeIn>
               ))}
             </section>

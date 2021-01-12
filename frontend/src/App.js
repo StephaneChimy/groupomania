@@ -14,7 +14,7 @@ import LoginForm from "./components/LoginForm/LoginForm";
 import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
 import Home from "./components/Home/Home";
 import {isLogged} from "./components/_utils/auth/auth.functions";
-import FullMessage from "./components/Messages/FullMessage";
+import MessagesContainer from "./components/Messages/MessagesContainer";
 import HomeAccount from "./components/Account/HomeAccount";
 import EditHomeAccount from "./components/Account/Edit.HomeAccount";
 import { ToastContainer} from 'react-toastify';
@@ -63,7 +63,7 @@ const App = () => {
         </Route>
 
         <Route path="/messages/:id" exact>
-        {isLoggedIn ? <FullMessage />  : <Redirect to="/login" />}
+        {isLoggedIn ? <MessagesContainer />  : <Redirect to="/login" />}
         </Route>
 
         

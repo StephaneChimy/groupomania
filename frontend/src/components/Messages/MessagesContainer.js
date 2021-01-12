@@ -20,9 +20,7 @@ const FullMessage = () => {
       (res) => {
         if (res.status === 200) {
           res.json().then((result) => {
-            //console.log(result);
             setMessages(result);
-            //console.log(messages);
             setIsLoaded(true);
           });
         } else if (res.status === 404) {
