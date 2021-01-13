@@ -16,7 +16,7 @@ const EditAccount = ({ ...account }) => {
 
   const SendData = (e) => {
     e.preventDefault();
-    console.log(firstnameValue, surnameValue);
+    //console.log(firstnameValue, surnameValue);
     //useEffect(() => {
     // POST request using fetch inside useEffect React hook
     const requestOptions = {
@@ -26,8 +26,8 @@ const EditAccount = ({ ...account }) => {
       body: JSON.stringify({
         name: firstnameValue,
         surname: surnameValue,
-        email: emailValue,
-        password: passwordValue,
+        //email: emailValue,
+        //password: passwordValue,
       }),
     };
     fetch(`http://localhost:3000/api/auth/account/${id}`, requestOptions)
@@ -101,9 +101,7 @@ const EditAccount = ({ ...account }) => {
                 value={emailValue}
                 onChange={(event) => setEmailValue(event.target.value)}
               />
-              <small id="emailHelp" className="form-text text-muted">
-                We'll never share your email with anyone else.
-              </small>
+              
             </div>
             <div className="form-group">
               <label htmlFor="password">Password</label>

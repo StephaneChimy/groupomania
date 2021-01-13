@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Account from "./Account";
+import AccountEdit from "./AccountEdit";
 // import UserMessages from "./UsersMessages";
 import MessagesContainer from "../Messages/MessagesContainer";
 import { useParams } from "react-router-dom";
 import { getAccount } from "../_utils/auth/auth.functions";
 import { NoUserFound } from "../Infos/NotFound";
 
-const HomeAccount = ({ onLogout }) => {
+const AccountContainer = (params) => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [account, setAccount] = useState([]);
   const { id } = useParams();
+  console.log(params.editor);
+  // console.log(onLogout);
 
   // Remarque : le tableau vide de dépendances [] indique
   // que useEffect ne s’exécutera qu’une fois, un peu comme
@@ -49,6 +52,10 @@ const HomeAccount = ({ onLogout }) => {
     fetchAccount();
   }, []);
 
+  const handlePost = () => {
+    fetchAccount();
+  };
+
   // const handlePost = () => {
   //   fetchAccount()
   // }
@@ -67,12 +74,19 @@ const HomeAccount = ({ onLogout }) => {
       account && (
         <React.Fragment>
           <section className="row justify-content-center">
-            <Account {...account} onLogout={onLogout} />
+            {!params.editor ? (
+              <Account {...account} onLogout={params.onLogout} />
+            ) : null}
+            {params.editor ? (
+              <AccountEdit {...account} onPost={handlePost} />
+            ) : null}
           </section>
-          <MessagesContainer messageQuery="getAllUserMessages" />
+          {!params.editor ? (
+            <MessagesContainer messageQuery="getAllUserMessages" />
+          ) : null}
         </React.Fragment>
       )
     );
   }
 };
-export default HomeAccount;
+export default AccountContainer;
