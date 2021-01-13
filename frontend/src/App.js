@@ -63,7 +63,7 @@ const App = () => {
         </Route>
 
         <Route path="/messages/:id" exact>
-        {isLoggedIn ? <MessagesContainer />  : <Redirect to="/login" />}
+        {isLoggedIn ? <MessagesContainer messageQuery="getOneMessage" />  : <Redirect to="/login" />}
         </Route>
 
         

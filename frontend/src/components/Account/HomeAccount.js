@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Account from "./Account";
-import UserMessages from "./UsersMessages";
+// import UserMessages from "./UsersMessages";
+import MessagesContainer from "../Messages/MessagesContainer";
 import { useParams } from "react-router-dom";
 import { getAccount } from "../_utils/auth/auth.functions";
 import { NoUserFound } from "../Infos/NotFound";
@@ -68,7 +69,7 @@ const HomeAccount = ({ onLogout }) => {
           <section className="row justify-content-center">
             <Account {...account} onLogout={onLogout} />
           </section>
-          <UserMessages />
+          <MessagesContainer messageQuery="getAllUserMessages" />
         </React.Fragment>
       )
     );
