@@ -10,6 +10,7 @@ import {
 import { NoMessageFound } from "../Infos/NotFound";
 import FadeIn from "react-fade-in";
 import InfiniteScroll from "react-infinite-scroll-component";
+import PostMessage from "./PostMessage";
 
 const MessageContainer = ({ ...params }) => {
   const [error, setError] = useState(null);
@@ -113,6 +114,7 @@ const MessageContainer = ({ ...params }) => {
     fetchMessage();
   }, [page]);
 
+  // Reset messages and pages on a new post.
   const handlePost = () => {
     setPage((page) => { page = 0});
     setMessages(messages.splice(0, messages.length));
@@ -152,6 +154,7 @@ const MessageContainer = ({ ...params }) => {
   ) {
     return (
       <React.Fragment>
+        {params.postMessage ? <PostMessage onPost={handlePost}/> : null}
         <InfiniteScroll
           dataLength={totalItems}
           next={() => setPage(+1)}

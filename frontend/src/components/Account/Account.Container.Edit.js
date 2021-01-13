@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import EditAccount from "./Edit.Account";
+import EditAccount from "./Account.Edit";
 import { useParams } from "react-router-dom";
 import { getAccount } from "../_utils/auth/auth.functions";
 
