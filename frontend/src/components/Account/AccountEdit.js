@@ -13,9 +13,6 @@ const EditAccount = ({ ...account }) => {
 
   const SendData = (e) => {
     e.preventDefault();
-    //console.log(firstnameValue, surnameValue);
-    //useEffect(() => {
-    // POST request using fetch inside useEffect React hook
     const requestOptions = {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -23,8 +20,6 @@ const EditAccount = ({ ...account }) => {
       body: JSON.stringify({
         name: firstnameValue,
         surname: surnameValue,
-        //email: emailValue,
-        //password: passwordValue,
       }),
     };
     fetch(`http://localhost:3000/api/auth/account/${id}`, requestOptions)
@@ -35,12 +30,7 @@ const EditAccount = ({ ...account }) => {
           account.onPost();
         }
       })
-
-      //.then((response) => response.json())
       .catch((error) => console.log(error));
-
-    // empty dependency array means this effect will only run once (like componentDidMount in classes)
-    // }, []);
   };
   return (
     <div className="col-11 mb-3">
@@ -99,7 +89,6 @@ const EditAccount = ({ ...account }) => {
                 readOnly={true}
                 onChange={(event) => setEmailValue(event.target.value)}
               />
-              
             </div>
             {/* <div className="form-group">
               <label htmlFor="password">Password</label>
@@ -121,14 +110,7 @@ const EditAccount = ({ ...account }) => {
             </button>
           </form>
         </div>
-        <div className="card-footer">
-
-          {/* {account.canEdit === true && (
-            <a href="" className="card-link">
-              <i className="fa fa-ban"></i> Erase
-            </a>
-          )} */}
-        </div>
+        <div className="card-footer"></div>
       </div>
     </div>
   );
