@@ -8,7 +8,6 @@ const EditAccount = ({ ...account }) => {
   const [emailValue, setEmailValue] = useState(
     getEmailFromCrypto(account.email)
   );
-  const [passwordValue, setPasswordValue] = useState("");
   const [firstnameValue, setFirstnameValue] = useState(account.name);
   const [surnameValue, setSurnameValue] = useState(account.surname);
 
