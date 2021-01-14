@@ -1,6 +1,4 @@
 const express = require("express");
-const mysql = require("mysql");
-const {Sequelize} = require("sequelize");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const userRoutes = require("./routes/user");
