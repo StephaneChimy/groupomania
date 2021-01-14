@@ -83,21 +83,23 @@ async function resetUserLockAttempt(emailHash, user) {
   );
 }
 
+//Send token in a cookie
 function sendNewToken(userData, res) {
   newToken = jwt.sign(
     { userId: userData.id, admin: userData.admin },
     "RANDOM_TOKEN_SECRET",
     {
-      expiresIn: "24h",
+      expiresIn: "2h",
     }
   );
   
   console.log("send new token");
   return res
     .status(200)
-    .cookie("token", newToken, { maxAge: 6000000, httpOnly: true })
-    .cookie("groupomania", true, { maxAge: 6000000, httpOnly: false })
-    .cookie("groupomaniaId", userData.id, { maxAge: 6000000, httpOnly: false })
+    // expiration of cookies for 2 hours
+    .cookie("token", newToken, { maxAge: 7200000, httpOnly: true })
+    .cookie("groupomania", true, { maxAge: 7200000, httpOnly: false })
+    .cookie("groupomaniaId", userData.id, { maxAge: 7200000, httpOnly: false })
     .json({
       userId: userData.id,
       token: newToken,

@@ -1,10 +1,8 @@
 import "./App.css";
+import React from "react";
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  useParams,
   Redirect,
 } from "react-router-dom";
 import { useState } from "react";
@@ -18,10 +16,9 @@ import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AccountContainer from "./components/Account/AccountContainer";
 
-// import SomeoneElseAccount from "./components/Account/SomeoneElseAccount";
-
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(isLogged())
+  
 
   const handleLogout = () => {
     setIsLoggedIn(false)
@@ -33,7 +30,7 @@ const App = () => {
 
   return (
     
-    <Router>
+    <React.Fragment>
       <ToastContainer position="top-center"/>
       {isLoggedIn ? <LoggedHeader onLogout={handleLogout} /> : <Header />}
       {/* <Header /> */}
@@ -62,12 +59,9 @@ const App = () => {
         {isLoggedIn ? <MessagesContainer messageQuery="getOneMessage" />  : <Redirect to="/login" />}
         </Route>
 
-        
-
-        {/* <Route path="/Account" exact component={Account} /> */}
       </Switch>
       </main>
-    </Router>
+    </React.Fragment>
   );
 };
 

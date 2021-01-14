@@ -12,7 +12,7 @@ const AccountContainer = (params) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [account, setAccount] = useState([]);
   const { id } = useParams();
-  console.log(params.editor);
+  //console.log(params.editor);
   // console.log(onLogout);
 
   // Remarque : le tableau vide de dépendances [] indique

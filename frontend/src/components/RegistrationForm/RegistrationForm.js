@@ -35,8 +35,6 @@ const RegistrationForm = () => {
           history.push("/");
         }
       })
-
-      //.then((response) => response.json())
       .catch((error) => console.log(error));
 
     // empty dependency array means this effect will only run once (like componentDidMount in classes)

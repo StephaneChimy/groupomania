@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { getEmailFromCrypto, REGEX } from "../_utils/auth/auth.functions";
 import { userModified } from "../_utils/toasts/users";
@@ -12,7 +11,6 @@ const EditAccount = ({ ...account }) => {
   const [passwordValue, setPasswordValue] = useState("");
   const [firstnameValue, setFirstnameValue] = useState(account.name);
   const [surnameValue, setSurnameValue] = useState(account.surname);
-  // const history = useHistory();
 
   const SendData = (e) => {
     e.preventDefault();
@@ -99,11 +97,12 @@ const EditAccount = ({ ...account }) => {
                 aria-describedby="emailHelp"
                 placeholder="Enter email"
                 value={emailValue}
+                readOnly={true}
                 onChange={(event) => setEmailValue(event.target.value)}
               />
               
             </div>
-            <div className="form-group">
+            {/* <div className="form-group">
               <label htmlFor="password">Password</label>
               <input
                 id="password"
@@ -116,7 +115,7 @@ const EditAccount = ({ ...account }) => {
                 value={passwordValue}
                 onChange={(event) => setPasswordValue(event.target.value)}
               />
-            </div>
+            </div> */}
 
             <button type="submit" className="btn btn-primary">
               Edit
@@ -124,15 +123,6 @@ const EditAccount = ({ ...account }) => {
           </form>
         </div>
         <div className="card-footer">
-          {/* <a href="#" className="card-link">
-            <i className="fa fa-gittip"></i> Like
-          </a>
-          <a href="#" className="card-link">
-            <i className="fa fa-comment"></i> Comment
-          </a>
-          <a href="#" className="card-link">
-            <i className="fa fa-mail-forward"></i> Share
-          </a> */}
 
           {/* {account.canEdit === true && (
             <a href="" className="card-link">

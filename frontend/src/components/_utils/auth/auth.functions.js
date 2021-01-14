@@ -51,10 +51,8 @@ function logout(page) {
     headers: { "Content-Type": "application/json" },
     credentials: "include",
   };
-  console.log(requestOptions);
   return fetchApi("auth/logout", page, requestOptions)
     .then((response) => {
-      console.log(response.json());
       if (response.ok) {
         userLogout();
       }
@@ -76,12 +74,10 @@ const deleteAccount = (accountId, page) => {
     headers: { "Content-Type": "application/json" },
     credentials: "include",
   };
-  console.log(requestOptions);
 
   return fetchApi(`auth/account/${accountId}`, page, requestOptions)
     .then(() => logout())
     .then(() => userDeleted());
-  // alert("Compte supprimé !");
 };
 
 export {

@@ -2,16 +2,15 @@ import globalFunctions from "../_utils/_functions";
 import { deleteOneMessage } from "../_utils/messages/messages.functions";
 import { useHistory } from "react-router-dom";
 
-// import { toastMessageDeleted } from "../_utils/toasts/messages"
-
 const Message = ({ ...message }) => {
   const history = useHistory();
 
   const onClickDeleteMessage = (e) => {
     e.preventDefault();
     deleteOneMessage(message.id);
+    message.onErase();
     history.push("/");
-    // toastMessageDeleted();
+    
   };
 
   return (

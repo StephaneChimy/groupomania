@@ -1,7 +1,5 @@
 import fetchApi from "../api/api.service";
-import { toastMessageDeleted } from "../toasts/messages"
-
-
+import { toastMessageDeleted } from "../toasts/messages";
 
 // import { useState, useEffect } from "react";
 
@@ -94,8 +92,8 @@ const deleteOneMessage = (messageId, page) => {
   };
   //console.log(requestOptions);
 
-  fetchApi(`messages/${messageId}`,page , requestOptions)
-  .then(() => toastMessageDeleted())
+  return fetchApi(`messages/${messageId}`, page, requestOptions)
+  .then(() => toastMessageDeleted());
   // alert("Message supprimé !");
 };
 
