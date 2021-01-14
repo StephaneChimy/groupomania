@@ -50,6 +50,7 @@ const AccountContainer = (params) => {
 
   useEffect(() => {
     fetchAccount();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handlePost = () => {

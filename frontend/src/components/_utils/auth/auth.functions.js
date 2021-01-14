@@ -9,6 +9,7 @@ const CryptoJS = require("crypto-js");
 
 // Variables
 const REGEX = {
+  // eslint-disable-next-line no-useless-escape
   EMAIL_REGEX: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
   NAME_REGEX: "^([p{L}]+)([p{L}- ']*)$",
   SURNAME_REGEX: "^([p{L}]+)([p{L}- ']*)$",
@@ -42,7 +43,7 @@ function getIdFromCookie() {
   }
 }
 
-function logout(page) {
+async function logout(page) {
   Cookies.remove("groupomania");
   Cookies.remove("groupomaniaId");
 
@@ -51,13 +52,14 @@ function logout(page) {
     headers: { "Content-Type": "application/json" },
     credentials: "include",
   };
-  return fetchApi("auth/logout", page, requestOptions)
-    .then((response) => {
-      if (response.ok) {
-        userLogout();
-      }
-    })
-    .catch((error) => console.log(error));
+  try {
+    const response = await fetchApi("auth/logout", page, requestOptions);
+    if (response.ok) {
+      userLogout();
+    }
+  } catch (error) {
+    return console.log(error);
+  }
 }
 
 const getAccount = (accountId, page) => {
@@ -68,16 +70,16 @@ const getAccount = (accountId, page) => {
   return fetchApi(`auth/account/${accountId}`, page, requestOptions);
 };
 
-const deleteAccount = (accountId, page) => {
+const deleteAccount = async (accountId, page) => {
   const requestOptions = {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
   };
 
-  return fetchApi(`auth/account/${accountId}`, page, requestOptions)
-    .then(() => logout())
-    .then(() => userDeleted());
+  await fetchApi(`auth/account/${accountId}`, page, requestOptions);
+  await logout();
+  return userDeleted();
 };
 
 export {

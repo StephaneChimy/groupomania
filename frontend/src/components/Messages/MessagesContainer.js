@@ -116,6 +116,7 @@ const MessageContainer = ({ ...params }) => {
 
   useEffect(() => {
     fetchMessage();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, refetch]);
 
   // Reset messages and pages on a new post.
