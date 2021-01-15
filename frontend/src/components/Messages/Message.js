@@ -7,10 +7,11 @@ const Message = ({ ...message }) => {
 
   const onClickDeleteMessage = (e) => {
     e.preventDefault();
-    deleteOneMessage(message.id);
-    message.onErase();
-    history.push("/");
-    
+    if(window.confirm("Are you sure you want to delete this message?")){
+      deleteOneMessage(message.id) 
+      message.onErase() 
+      history.push("/");
+    }
   };
 
   return (
@@ -60,7 +61,7 @@ const Message = ({ ...message }) => {
 
         {message.canEdit === true && (
           <a
-            href="/"
+            href="#"
             className="card-link text-danger"
             onClick={onClickDeleteMessage}
           >

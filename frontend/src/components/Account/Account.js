@@ -10,8 +10,11 @@ const Account = ({ ...account }) => {
 
   const onClickDeleteAccount = (e) => {
     e.preventDefault();
-    account.onLogout();
-    deleteAccount(account.id).then(() => history.push("/"));
+    if (window.confirm("Are you sure you want to delete this account?")) {
+      account.onLogout();
+      deleteAccount(account.id)
+      history.push("/");
+    }
   };
   return (
     <div className="col-11 mb-3">
@@ -64,8 +67,9 @@ const Account = ({ ...account }) => {
             </a>
           )}
           {account.canEdit === true && (
+            // eslint-disable-next-line jsx-a11y/anchor-is-valid
             <a
-              href="/"
+              href="#"
               className="card-link text-danger"
               onClick={onClickDeleteAccount}
             >
