@@ -35,7 +35,7 @@ const Message = ({ ...message }) => {
           {" " + globalFunctions.convertDateForHuman(message.createdAt)}
         </div>
         <a className="card-link" href={"/messages/" + message.id}>
-          <h5 className="card-title">{message.title}</h5>
+          <h2 className="h5 card-title">{message.title}</h2>
         </a>
 
         {message.teaserMessage ? (

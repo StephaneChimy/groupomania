@@ -34,7 +34,7 @@ const Account = ({ ...account }) => {
               functions.convertDateForHuman(account.createdAt)}
           </div>
 
-          <h5 className="card-title">Informations:</h5>
+          <h2 className="h5 card-title">Informations:</h2>
 
           {/* <p className="card-text">Id : {account.id}</p> */}
 

@@ -50,7 +50,7 @@ const RegistrationForm = () => {
           alt="logo of the company Groupomania"
         />
         <div className="card-body">
-          <h5 className="card-title text-center">Register</h5>
+          <h2 className="h5 card-title text-center">Register</h2>
 
           <form onSubmit={SendData}>
             <div className="form-group">

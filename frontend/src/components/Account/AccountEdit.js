@@ -45,7 +45,7 @@ const EditAccount = ({ ...account }) => {
           </div>
         </div>
         <div className="card-body">
-          <h5 className="card-title text-center">Edit Profile</h5>
+          <h2 className="h5 card-title text-center">Edit Profile</h2>
 
           <form onSubmit={SendData}>
             <div className="form-group">

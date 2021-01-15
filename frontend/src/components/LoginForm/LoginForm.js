@@ -55,7 +55,7 @@ const LoginForm = ({ onLogin }) => {
       <div className="card col-8">
         <img className="card-img-top mx-auto col-8" src={logo} alt="logo of the company Groupomania" />
         <div className="card-body">
-          <h5 className="card-title text-center">Login</h5>
+          <h2 className="h5 card-title text-center">Login</h2>
           <form onSubmit={sendData}>
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">Email address</label>
