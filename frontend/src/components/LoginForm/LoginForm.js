@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import logo from "../../images/icon-above-font.png";
-import {isLogged} from "../_utils/auth/auth.functions";
-import { userConnected } from "../_utils/toasts/users";
+import {isLogged} from "../../_utils/auth/auth.functions";
+import { userConnected } from "../../_utils/toasts/users";
 
 const LoginForm = ({ onLogin }) => {
   const [emailValue, setEmailValue] = useState("");

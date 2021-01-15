@@ -1,8 +1,8 @@
-import functions from "../_utils/_functions";
+import functions from "../../_utils/_functions";
 import {
   getEmailFromCrypto,
   deleteAccount,
-} from "../_utils/auth/auth.functions";
+} from "../../_utils/auth/auth.functions";
 import { useHistory } from "react-router-dom";
 
 const Account = ({ ...account }) => {

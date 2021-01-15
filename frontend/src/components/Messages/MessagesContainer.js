@@ -6,7 +6,7 @@ import {
   getOneMessage,
   getAllUserMessages,
   getMessages,
-} from "../_utils/messages/messages.functions";
+} from "../../_utils/messages/messages.functions";
 import { NoMessageFound } from "../Infos/NotFound";
 import FadeIn from "react-fade-in";
 import InfiniteScroll from "react-infinite-scroll-component";

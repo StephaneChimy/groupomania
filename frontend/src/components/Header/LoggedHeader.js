@@ -1,6 +1,6 @@
 import logo from "../../images/icon.png";
-import {logout} from "../_utils/auth/auth.functions";
-import {getIdFromCookie} from "../_utils/auth/auth.functions";
+import {logout} from "../../_utils/auth/auth.functions";
+import {getIdFromCookie} from "../../_utils/auth/auth.functions";
 import { useHistory } from "react-router-dom";
 
 const LoggedHeader = ({ onLogout }) => {

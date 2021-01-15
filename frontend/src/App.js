@@ -10,7 +10,7 @@ import Header from "./components/Header/Header";
 import LoggedHeader from "./components/Header/LoggedHeader";
 import LoginForm from "./components/LoginForm/LoginForm";
 import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
-import {isLogged} from "./components/_utils/auth/auth.functions";
+import {isLogged} from "./_utils/auth/auth.functions";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

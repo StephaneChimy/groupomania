@@ -1,5 +1,5 @@
-import globalFunctions from "../_utils/_functions";
-import { deleteOneMessage } from "../_utils/messages/messages.functions";
+import globalFunctions from "../../_utils/_functions";
+import { deleteOneMessage } from "../../_utils/messages/messages.functions";
 import { useHistory } from "react-router-dom";
 
 const Message = ({ ...message }) => {

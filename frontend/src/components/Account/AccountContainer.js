@@ -4,7 +4,7 @@ import AccountEdit from "./AccountEdit";
 // import UserMessages from "./UsersMessages";
 import MessagesContainer from "../Messages/MessagesContainer";
 import { useParams } from "react-router-dom";
-import { getAccount } from "../_utils/auth/auth.functions";
+import { getAccount } from "../../_utils/auth/auth.functions";
 import { NoUserFound } from "../Infos/NotFound";
 
 const AccountContainer = (params) => {
