@@ -28,6 +28,8 @@ Le projet consiste à construire un réseau social interne pour les employés de
 
 Go back into the folder you named and this time get into the backend folder then run:
 ```npm install```
+```npx sequelize```
+
 
 4 - Install the frontend:
 
@@ -41,24 +43,27 @@ Get into the frontend folder and run:
 The database is configured to work with a user named groupomania and password: groupomania.
 We will work on a database named: groupomania_development
 
-First let's create the database with a dump from backend/mysql/groupomania_dump.sql:
-
-```cd groupomania/backend/mysql```
-
-```mysql --user="your_MySQL_user" --password="your_password" groupomania_development < groupomania_dump.sql```
-
+Now let's connect to MySQL with your user and password.
 Next add a user named groupomania: 
+
 ```CREATE USER 'groupomania'@'localhost' IDENTIFIED BY 'groupomania';```
 
-Next we need to grant him privileges on the database: 
-```GRANT ALL PRIVILEGES ON groupomania_development.* TO 'groupomania'@'localhost';```
-
-Next, in the backend folder, we just check if everything is ok with sequelize-cli:
+Now go back to your backend folder.
+Next we use sequelize to create our databases with sequelize-cli:
 
 ```sequelize-cli db:create```
 ```sequelize-cli db:migrate```
 
 (By default with sequelize it will add 2 more databases we will not use, it's for test and production)
+
+Populate the database with the dump from backend/mysql/groupomania_dump.sql:
+
+```cd mysql```
+
+```mysql -u "Your_MySQL_User" -p groupomania_development < groupomania_dump.sql```
+
+Next we need to grant groupomania user privileges on the database: 
+```GRANT ALL PRIVILEGES ON groupomania_development.* TO 'groupomania'@'localhost';```
 
 6 - Run npm start from the backend folder
 
@@ -75,5 +80,8 @@ Next, in the backend folder, we just check if everything is ok with sequelize-cl
 5 - You can start playing with the API on http://localhost:3001/
 
 Already two users have been added :
-user:user4
-admin:admin4
+
+```bash
+test@test.com: test4
+admin@test.com: admin4
+```

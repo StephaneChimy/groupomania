@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {toastMessagePosted} from "../_utils/toasts/messages"
+import {toastMessagePosted} from "../../_utils/toasts/messages"
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -63,6 +63,7 @@ const PostMessage = ({ onPost }) => {
                   </label>
                   <input
                   id="title"
+                  required
                     name="title"
                     type="text"
                     className="form-control"
@@ -78,6 +79,7 @@ const PostMessage = ({ onPost }) => {
                   {/* <ArticleEditor /> */}
                   <textarea
                     className="form-control"
+                    required
                     id="message"
                     rows="3"
                     placeholder="Content?"
