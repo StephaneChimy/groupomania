@@ -52,7 +52,7 @@ const LoginForm = ({ onLogin }) => {
 
   return (
     <section className="row mx-auto justify-content-center">
-      <div className="card col-8">
+      <div className="card col-11">
         <img className="card-img-top mx-auto col-8" src={logo} alt="logo of the company Groupomania" />
         <div className="card-body">
           <h2 className="h5 card-title text-center">Login</h2>
@@ -69,9 +69,6 @@ const LoginForm = ({ onLogin }) => {
                 value={emailValue}
                 onChange={(event) => setEmailValue(event.target.value)}
               />
-              <small id="emailHelp" className="form-text text-muted">
-                We'll never share your email with anyone else.
-              </small>
             </div>
             <div className="form-group">
               <label htmlFor="exampleInputPassword1">Password</label>

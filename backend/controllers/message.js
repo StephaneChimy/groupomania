@@ -17,7 +17,7 @@ exports.createMessage = (req, res) => {
     return res.status(400).json({ error: "Missing parameters" });
   }
 
-  if (title.length <= 2 || content <= 4) {
+  if (title.length <= 2 || content.length <= 4) {
     return res.status(400).json({ error: "Invalid parameters" });
   }
 

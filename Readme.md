@@ -51,7 +51,7 @@ Next we need to grant him privileges on the database:
 
 ```GRANT ALL PRIVILEGES ON groupomania_development.* TO 'groupomania'@'localhost';```
 
-Next, create databases with sequelize-cli:
+Next, create databases with sequelize-cli from the backend folder:
 
 ```sequelize-cli db:create```
 ```sequelize-cli db:migrate```

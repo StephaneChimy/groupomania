@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import logo from "../../images/icon-above-font.png";
 import { userRegistered } from "../../_utils/toasts/users";
+import {REGEX} from "../../_utils/auth/auth.functions"
 
 const RegistrationForm = () => {
   const [emailValue, setEmailValue] = useState("");
@@ -43,14 +44,14 @@ const RegistrationForm = () => {
 
   return (
     <section className="row mx-auto justify-content-center">
-      <div className="card col-8">
+      <div className="card col-11">
         <img
           className="card-img-top mx-auto col-8"
           src={logo}
           alt="logo of the company Groupomania"
         />
         <div className="card-body">
-          <h2 className="h5 card-title text-center">Register</h2>
+          <h1 className="h5 card-title text-center">Register</h1>
 
           <form onSubmit={SendData}>
             <div className="form-group">
@@ -63,6 +64,7 @@ const RegistrationForm = () => {
                 placeholder="Nom"
                 value={firstnameValue}
                 required
+                pattern={REGEX.NAME_REGEX}
                 onChange={(event) => setFirstnameValue(event.target.value)}
               />
             </div>
@@ -76,6 +78,7 @@ const RegistrationForm = () => {
                 placeholder="Prénom"
                 value={surnameValue}
                 required
+                pattern={REGEX.SURNAME_REGEX}
                 onChange={(event) => setSurnameValue(event.target.value)}
               />
             </div>
@@ -106,6 +109,7 @@ const RegistrationForm = () => {
                 placeholder="Password"
                 value={passwordValue}
                 required
+                pattern={REGEX.PASSWORD_REGEX}
                 onChange={(event) => setPasswordValue(event.target.value)}
               />
             </div>

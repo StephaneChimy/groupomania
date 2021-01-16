@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import {toastMessagePosted} from "../../_utils/toasts/messages"
-import 'react-toastify/dist/ReactToastify.css';
-
+import { toastMessagePosted } from "../../_utils/toasts/messages";
+import "react-toastify/dist/ReactToastify.css";
 
 const PostMessage = ({ onPost }) => {
   const [titleValue, setTitleValue] = useState("");
   const [contentValue, setContentValue] = useState("");
 
-  async function SendData(e){
+  async function SendData(e) {
     e.preventDefault();
     console.log(titleValue, contentValue);
     //useEffect(() => {
@@ -42,33 +41,30 @@ const PostMessage = ({ onPost }) => {
 
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
     // }, []);
-  };
+  }
 
   return (
-    
     <section className="row justify-content-center mb-5">
       <form className="col-11" onSubmit={SendData}>
         <div className="card">
           <div className="card-header ">Publish an article</div>
           <div className="card-body">
             <div className="tab-content" id="myTabContent">
-              <div
-                className="tab-pane fade show active"
-                id="posts"
-                
-              >
+              <div className="tab-pane fade show active" id="posts">
                 <div className="form-group">
                   <label className="sr-only" htmlFor="title">
                     title
                   </label>
                   <input
-                  id="title"
-                  required
+                    id="title"
+                    required
                     name="title"
                     type="text"
                     className="form-control"
                     placeholder="Title?"
                     value={titleValue}
+                    pattern="\w{3,}"
+                    title="Minimum 3 character"
                     onChange={(event) => setTitleValue(event.target.value)}
                   />
                 </div>
@@ -76,14 +72,14 @@ const PostMessage = ({ onPost }) => {
                   <label className="sr-only" htmlFor="message">
                     post
                   </label>
-                  {/* <ArticleEditor /> */}
                   <textarea
                     className="form-control"
                     required
                     id="message"
                     rows="3"
-                    placeholder="Content?"
+                    placeholder="Minimum 5 character"
                     value={contentValue}
+                    minLength="5"
                     onChange={(event) => setContentValue(event.target.value)}
                   ></textarea>
                 </div>
