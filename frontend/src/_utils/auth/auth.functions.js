@@ -43,7 +43,7 @@ function getIdFromCookie() {
   }
 }
 
-async function logout(page) {
+function logout(page) {
   Cookies.remove("groupomania");
   Cookies.remove("groupomaniaId");
 
@@ -52,14 +52,15 @@ async function logout(page) {
     headers: { "Content-Type": "application/json" },
     credentials: "include",
   };
-  try {
-    const response = await fetchApi("auth/logout", page, requestOptions);
-    if (response.ok) {
-      userLogout();
-    }
-  } catch (error) {
-    return console.log(error);
-  }
+  console.log(requestOptions);
+  return fetchApi("auth/logout", page, requestOptions)
+    .then((response) => {
+      console.log(response.json());
+      if (response.ok) {
+        userLogout();
+      }
+    })
+    .catch((error) => console.log(error));
 }
 
 const getAccount = (accountId, page) => {
@@ -70,16 +71,16 @@ const getAccount = (accountId, page) => {
   return fetchApi(`auth/account/${accountId}`, page, requestOptions);
 };
 
-const deleteAccount = async (accountId, page) => {
+const deleteAccount = (accountId, page) => {
   const requestOptions = {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
   };
 
-  await fetchApi(`auth/account/${accountId}`, page, requestOptions);
-  await logout();
-  return userDeleted();
+  return fetchApi(`auth/account/${accountId}`, page, requestOptions)
+    .then(() => logout())
+    .then(() => userDeleted());
 };
 
 export {

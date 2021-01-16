@@ -178,7 +178,14 @@ const MessageContainer = ({ ...params }) => {
       </React.Fragment>
     );
   } else {
-    return <div className="text-center">Nothing to show</div>;
+    return (
+<React.Fragment>
+{params.postMessage ? <PostMessage onPost={handlePost} /> : null}
+<div className="text-center">No messages</div>
+</React.Fragment>
+    
+    )
+    
   }
 };
 export default MessageContainer;
