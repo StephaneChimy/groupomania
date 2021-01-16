@@ -248,6 +248,7 @@ exports.getUserProfile = (req, res, next) => {
 exports.updateUserProfile = (req, res, next) => {
   // Getting auth header
   let userInfos = functions.getInfosUserFromToken(req, res);
+  let CurrentUserId = req.params.id
 
   if (userInfos.userId < 0) {
     return res.status(400).json({ error: "Wrong token" });
@@ -259,10 +260,13 @@ exports.updateUserProfile = (req, res, next) => {
 
   models.User.findOne({
     attributes: ["id", "name", "surname"],
-    where: { id: userInfos.userId },
+    where: { id: CurrentUserId },
   })
     .then((user) => {
-      if (user) {
+      if(!user){
+        res.status(404).json({ error: "User not found" });
+      }
+      if (user && user.id === userInfos.userId || userInfos.admin === true) {
         user
           .update({
             name: name ? name : user.name,

@@ -3,7 +3,6 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const userRoutes = require("./routes/user");
 const messageRoutes = require("./routes/message");
-const path = require("path");
 const cors = require('cors');
 const helmet = require('helmet');
 const xss = require('xss-clean');
