@@ -87,7 +87,7 @@ exports.getAllMessages = (req, res) => {
     include: [
       {
         model: models.User,
-        attributes: ["name", "id"],
+        attributes: ["name", "surname", "id"],
       },
     ],
   })
@@ -142,7 +142,7 @@ exports.getUserAllMessages = (req, res) => {
     include: [
       {
         model: models.User,
-        attributes: ["name", "id"],
+        attributes: ["name", "surname", "id"],
       },
     ],
   }).then((data) => {
@@ -174,7 +174,7 @@ exports.getOneMessage = (req, res) => {
     include: [
       {
         model: models.User,
-        attributes: ["name", "id"],
+        attributes: ["name", "surname", "id"],
       },
     ],
   })
@@ -211,7 +211,7 @@ exports.deleteMessage = (req, res) => {
     include: [
       {
         model: models.User,
-        attributes: ["name", "id"],
+        attributes: ["name", "surname", "id"],
       },
     ],
   })
@@ -227,7 +227,7 @@ exports.deleteMessage = (req, res) => {
           include: [
             {
               model: models.User,
-              attributes: ["name", "id"],
+              attributes: ["name", "surname", "id"],
             },
           ],
         })

@@ -23,6 +23,8 @@ const Message = ({ ...message }) => {
             <div className="ml-2">
               <a className="card-link" href={"/account/" + message.User.id}>
                 <div className="h5 m-0">@{message.User.name}</div>
+                <div className="h7 text-muted">{message.User.name} {message.User.surname}</div>
+
               </a>
             </div>
           </div>

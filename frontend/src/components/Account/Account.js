@@ -24,6 +24,7 @@ const Account = ({ ...account }) => {
             <div className="justify-content-between align-items-center">
               <div className="ml-2">
                 <div className="h5 m-0">@{account.name}</div>
+                <div className="h7 text-muted">{account.name} {account.surname}</div>
               </div>
             </div>
           </div>
