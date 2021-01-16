@@ -26,12 +26,9 @@ const MessageContainer = ({ ...params }) => {
   // componentDidMount()
 
   const fetchMessage = () => {
-    console.log(params.messageQuery);
     if (params.messageQuery === "getMessages") {
-      console.log("Supposed");
       getMessages(page).then(
         (res) => {
-          console.log(res);
           if (res.status === 200) {
             res.json().then((result) => {
               setMessages([...messages, ...result.messages]);
