@@ -60,6 +60,7 @@ const Message = ({ ...message }) => {
           </a> */}
 
         {message.canEdit === true && (
+          // eslint-disable-next-line jsx-a11y/anchor-is-valid
           <a
             href="#"
             className="card-link text-danger"
