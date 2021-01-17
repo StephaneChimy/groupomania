@@ -235,6 +235,9 @@ exports.getUserProfile = (req, res, next) => {
         } else {
           res.status(200).json(user);
         }
+        res.status(200).json(user);
+      } else if (user) {
+        res.status(200).json(user);
       }
     })
     .catch((error) => {
