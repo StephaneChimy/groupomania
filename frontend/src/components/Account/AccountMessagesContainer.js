@@ -13,7 +13,7 @@ const AccountMessagesContainer = ({ ...params }) => {
   const { id } = useParams();
   const [page, setPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
-  const [refetch, setRefetch] = useState(false);
+  const [refetch, setRefetch] = useState(0);
 
   const fetchMessage = () => {
     getAllUserMessages(id, page).then(
@@ -46,9 +46,13 @@ const AccountMessagesContainer = ({ ...params }) => {
   }, [page, refetch]);
 
   const handleErase = () => {
-    setMessages((messages) => (messages = []));
-    setIsLoaded(false);
-    setRefetch(true);
+    setRefetch((refetch) => refetch + 1);
+    setPage((page) => {
+      page = 0;
+    });
+    setMessages( messages => messages = []);
+    setIsLoaded((isLoaded) => isLoaded = false);
+    
   };
 
   if (error && error === 404) {

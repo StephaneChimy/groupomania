@@ -67,7 +67,11 @@ const AccountContainer = (params) => {
         <React.Fragment>
           <section className="row justify-content-center">
             {!params.editor ? (
-              <Account {...account} onLogout={params.onLogout} onDeletedAccount={handlerDeletedAccount}/>
+              <Account
+                {...account}
+                onLogout={params.onLogout}
+                onDeletedAccount={handlerDeletedAccount}
+              />
             ) : null}
             {params.editor ? (
               <AccountEdit {...account} onPost={handlePost} />

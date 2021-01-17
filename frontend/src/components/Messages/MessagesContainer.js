@@ -18,7 +18,7 @@ const MessageContainer = ({ ...params }) => {
   const { id } = useParams();
   const [page, setPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
-  const [refetch, setRefetch] = useState(false);
+  const [refetch, setRefetch] = useState(0);
 
   const fetchMessage = () => {
     if (params.messageQuery === "getMessages") {
@@ -39,7 +39,7 @@ const MessageContainer = ({ ...params }) => {
             setIsLoaded(true);
           }
         },
-        
+
         (error) => {
           setError(error);
           setIsLoaded(true);
@@ -99,21 +99,26 @@ const MessageContainer = ({ ...params }) => {
 
   useEffect(() => {
     fetchMessage();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, refetch]);
 
   // Reset messages and pages on a new post.
   const handlePost = () => {
+    setRefetch((refetch) => refetch + 1);
     setPage((page) => {
       page = 0;
     });
     setMessages(messages.splice(0, messages.length));
+    
   };
 
   const handleErase = () => {
-    setMessages((messages) => messages = []);
+    setRefetch((refetch) => refetch + 1);
+    setPage((page) => {
+      page = 0;
+    });
     setIsLoaded(false);
-    setRefetch(true);
+    
   };
 
   if (error && error === 404) {
@@ -164,13 +169,11 @@ const MessageContainer = ({ ...params }) => {
     );
   } else {
     return (
-<React.Fragment>
-{params.postMessage ? <PostMessage onPost={handlePost} /> : null}
-<div className="text-center">No messages</div>
-</React.Fragment>
-    
-    )
-    
+      <React.Fragment>
+        {params.postMessage ? <PostMessage onPost={handlePost} /> : null}
+        <div className="text-center">No messages</div>
+      </React.Fragment>
+    );
   }
 };
 export default MessageContainer;
