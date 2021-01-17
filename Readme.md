@@ -62,7 +62,7 @@ Then we restore the database with a dump from backend/mysql/groupomania_dump.sql
 
 ```cd groupomania/backend/mysql```
 
-```mysql --user="your_MySQL_user" --password="your_password" groupomania_development < groupomania_dump.sql```
+```mysql --user="your_MySQL_user" --password="your_password" groupomania_development < groupomania_development_dump.sql```
 
 6 - Run npm start from the backend folder
 
