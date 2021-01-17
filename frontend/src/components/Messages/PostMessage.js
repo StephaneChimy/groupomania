@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { toastMessagePosted } from "../../_utils/toasts/messages";
 import "react-toastify/dist/ReactToastify.css";
+import { REGEX } from "../../_utils/auth/auth.functions";
 
 const PostMessage = ({ onPost }) => {
   const [titleValue, setTitleValue] = useState("");
@@ -63,8 +64,8 @@ const PostMessage = ({ onPost }) => {
                     className="form-control"
                     placeholder="Title?"
                     value={titleValue}
-                    pattern="\w{3,}"
-                    title="Minimum 3 character"
+                    pattern={REGEX.NAME_REGEX}
+                    title="Character a à Z"
                     onChange={(event) => setTitleValue(event.target.value)}
                   />
                 </div>
