@@ -40,8 +40,8 @@ CREATE TABLE `messages` (
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `userId` (`userId`),
-  CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `Users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=256 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `Users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=263 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -62,7 +62,7 @@ DROP TABLE IF EXISTS `SequelizeMeta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `SequelizeMeta` (
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`name`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -99,7 +99,7 @@ CREATE TABLE `Users` (
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `emailHash` (`emailHash`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,7 +108,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (1,'U2FsdGVkX19DKFvNg5OBpy0VvMLeTaihEzlKPMQGZGE=','test','test','$2b$10$39xkZZzA91PWXOq096AFGeFVijM2vJuN6m0fAjtebcCjWRjsdYF7C',0,'b642b4217b34b1e8d3bd915fc65c4452',NULL,0,'2020-12-20 22:15:57','2021-01-14 11:51:52'),(6,'U2FsdGVkX18rjDg7u6LdLT+wVi9watQ7tw+PIWkrI9k=','admin','admin','$2b$10$FyPi8jpFTXvFAOXGpGaYVeulRO5F0Ts1matzmM1IrMzofbt2FSFX2',1,'5b37040e6200edb3c7f409e994076872','NULL',0,'2020-12-29 18:30:05','2021-01-13 10:13:10');
+INSERT INTO `Users` VALUES (1,'U2FsdGVkX19DKFvNg5OBpy0VvMLeTaihEzlKPMQGZGE=','test','test','$2b$10$39xkZZzA91PWXOq096AFGeFVijM2vJuN6m0fAjtebcCjWRjsdYF7C',0,'b642b4217b34b1e8d3bd915fc65c4452',NULL,0,'2020-12-20 22:15:57','2021-01-14 11:51:52'),(6,'U2FsdGVkX18rjDg7u6LdLT+wVi9watQ7tw+PIWkrI9k=','admin','admin','$2b$10$FyPi8jpFTXvFAOXGpGaYVeulRO5F0Ts1matzmM1IrMzofbt2FSFX2',1,'5b37040e6200edb3c7f409e994076872','NULL',0,'2020-12-29 18:30:05','2021-01-17 00:09:34'),(67,'U2FsdGVkX18Ul63l+qY3g/Ayic5Bvy2Vy9Wyoo03q6o=','test2','test2','$2b$10$P9cprYCBYSLyfigmdOevL.e2.VcQeZyf3whAqb6QzWNtR/k9.VLiW',0,'f2c97b1f2d2898cd2d6466ce95d4ba33',NULL,0,'2021-01-17 00:14:49','2021-01-17 00:14:49');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -121,4 +121,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-14 18:49:14
+-- Dump completed on 2021-01-17  1:25:28
