@@ -2,18 +2,29 @@ import functions from "../../_utils/_functions";
 import {
   getEmailFromCrypto,
   deleteAccount,
+  logout,
 } from "../../_utils/auth/auth.functions";
+import {userDeleted} from "../../_utils/toasts/users"
 import { useHistory } from "react-router-dom";
 
 const Account = ({ ...account }) => {
   const history = useHistory();
 
   const onClickDeleteAccount = (e) => {
+    console.log(account.isAdmin);
     e.preventDefault();
     if (window.confirm("Are you sure you want to delete this account?")) {
-      account.onLogout();
-      deleteAccount(account.id);
-      history.push("/");
+      if (account.isAdmin) {
+        deleteAccount(account.id);
+        userDeleted();
+        history.push(`/account${account.id}`);
+      } else {
+        logout();
+        userDeleted();
+        deleteAccount(account.id);
+        account.onLogout();
+        history.push("/");
+      }
     }
   };
   return (

@@ -79,8 +79,7 @@ const deleteAccount = (accountId, page) => {
   };
 
   return fetchApi(`auth/account/${accountId}`, page, requestOptions)
-    .then(() => logout())
-    .then(() => userDeleted());
+    
 };
 
 export {

@@ -59,12 +59,9 @@ exports.signup = (req, res, next) => {
   }
 
   if (!functions.checkPassword(password)) {
-    return res
-      .status(400)
-      .json({
-        error:
-          "Password is not valid (must be length min 4 and include 1 number",
-      });
+    return res.status(400).json({
+      error: "Password is not valid (must be length min 4 and include 1 number",
+    });
   }
 
   // Check if user already exist
@@ -106,7 +103,7 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-  console.log("email: "+ req.body.email + " password: " + req.body.password );
+  console.log("email: " + req.body.email + " password: " + req.body.password);
   let emailHash = cryptoJS.MD5(req.body.email).toString();
   let password = req.body.password;
 
@@ -124,7 +121,7 @@ exports.login = (req, res, next) => {
         return res
           .status(401)
           .json({ error: "Nom d'utilisateur (ou mot de passe) incorrect" });
-      } 
+      }
       // Test if the account is already locked
       if (functions.checkIfAccountIsLocked(user.lock_until)) {
         let waitingTime = (user.lock_until - Date.now()) / 1000 / 60;
@@ -163,12 +160,10 @@ exports.login = (req, res, next) => {
           })
           .catch((error) => console.log({ error }));
         //
-      }
-      else {
+      } else {
         bcrypt
           .compare(req.body.password, user.password)
           .then((valid) => {
-            
             // If it's a wrong password and the connection attempt is reached, then block the account
             if (!valid && user.login_attempts + 1 >= MAX_LOGIN_ATTEMPTS) {
               console.log(
@@ -187,9 +182,9 @@ exports.login = (req, res, next) => {
               console.log("increment value stade 1");
               // Increment value to the loginAttempts
               try {
-                functions.incrementLoginAttempt(emailHash, user)
+                functions.incrementLoginAttempt(emailHash, user);
               } catch (e) {
-              console.log(e)
+                console.log(e);
               }
               //
               return res
@@ -204,13 +199,12 @@ exports.login = (req, res, next) => {
                   functions.sendNewToken(user, res);
                 })
                 .catch((error) => console.log({ error }));
-            }
-            else {
+            } else {
               // User connected, send a simple token in a cookie
               functions.sendNewToken(user, res);
             }
           })
-          .catch((error) => res.status(500).json({ error : error }));
+          .catch((error) => res.status(500).json({ error: error }));
       }
     })
     .catch((error) => res.status(500).json({ error }));
@@ -219,7 +213,7 @@ exports.login = (req, res, next) => {
 exports.getUserProfile = (req, res, next) => {
   // Getting auth header
   let userInfos = functions.getInfosUserFromToken(req, res);
-  let CurrentUserId = req.params.id
+  let CurrentUserId = req.params.id;
 
   if (userInfos.userId < 0) {
     return res.status(400).json({ error: "Wrong token" });
@@ -230,13 +224,19 @@ exports.getUserProfile = (req, res, next) => {
     where: { id: CurrentUserId },
   })
     .then((user) => {
-      if(!user){
+      if (!user) {
         res.status(404).json({ error: "User not found" });
       }
-      if (user && user.id === userInfos.userId || userInfos.admin === true ) {
+      if ((user && user.id === userInfos.userId) || userInfos.admin === true) {
         user.dataValues.canEdit = true;
+        if (userInfos.admin === true) {
+          user.dataValues.isAdmin = true;
+          res.status(200).json(user);
+        } else {
+          res.status(200).json(user);
+        }
         res.status(200).json(user);
-      } else if(user){
+      } else if (user) {
         res.status(200).json(user);
       }
     })
@@ -248,7 +248,7 @@ exports.getUserProfile = (req, res, next) => {
 exports.updateUserProfile = (req, res, next) => {
   // Getting auth header
   let userInfos = functions.getInfosUserFromToken(req, res);
-  let CurrentUserId = req.params.id
+  let CurrentUserId = req.params.id;
 
   if (userInfos.userId < 0) {
     return res.status(400).json({ error: "Wrong token" });
@@ -263,10 +263,10 @@ exports.updateUserProfile = (req, res, next) => {
     where: { id: CurrentUserId },
   })
     .then((user) => {
-      if(!user){
+      if (!user) {
         res.status(404).json({ error: "User not found" });
       }
-      if (user && user.id === userInfos.userId || userInfos.admin === true) {
+      if ((user && user.id === userInfos.userId) || userInfos.admin === true) {
         user
           .update({
             name: name ? name : user.name,
@@ -290,7 +290,7 @@ exports.updateUserProfile = (req, res, next) => {
 
 exports.deleteUserProfile = (req, res) => {
   let userInfos = functions.getInfosUserFromToken(req, res);
-  let CurrentUserId = req.params.id
+  let CurrentUserId = req.params.id;
 
   if (userInfos.userId < 0) {
     return res.status(400).json({ error: "Wrong token" });
@@ -298,31 +298,30 @@ exports.deleteUserProfile = (req, res) => {
 
   models.User.findOne({
     where: { id: CurrentUserId },
-    attributes: ["id", "name", "surname", "email", "createdAt"]
-    
-  }).then((user) => {
-    console.log(user);
+    attributes: ["id", "name", "surname", "email", "createdAt"],
+  })
+    .then((user) => {
+      console.log(user);
 
-    if (user && user.id === userInfos.userId || userInfos.admin === true) {
-      async function destroyUser(userId){
-       await models.User.destroy({
-          where: { id: userId }
-        })
+      if ((user && user.id === userInfos.userId) || userInfos.admin === true) {
+        async function destroyUser(userId) {
+          await models.User.destroy({
+            where: { id: userId },
+          });
+        }
+        destroyUser(user.id)
+          .then(() => {
+            console.log("User supprimé");
+            res.status(200).json({ message: "User supprimé !" });
+          })
+          .catch((error) => res.status(400).json({ error }));
       }
-      destroyUser(user.id)
-      
-      .then(()=>{
-        console.log("User supprimé");
-        res.status(200).json({ message: "User supprimé !" });
-      })
-      .catch((error) => res.status(400).json({ error }));
-      
-    }
-  }).catch((error) => {
-    return res.status(404).json({ error: error });
-  });
+    })
+    .catch((error) => {
+      return res.status(404).json({ error: error });
+    });
 };
 
 exports.logout = (req, res, next) => {
   functions.eraseCookie(res);
-}
+};
