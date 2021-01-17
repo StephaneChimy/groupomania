@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Message from "../Messages/Message";
-//import PostMessage from "../Messages/PostMessage";
 import { useParams } from "react-router-dom";
 import { getAllUserMessages } from "../../_utils/messages/messages.functions";
 import { NoMessageFound } from "../Infos/NotFound";
@@ -16,10 +15,6 @@ const AccountMessagesContainer = ({ ...params }) => {
   const [totalItems, setTotalItems] = useState(0);
   const [refetch, setRefetch] = useState(false);
 
-  // Remarque : le tableau vide de dépendances [] indique
-  // que useEffect ne s’exécutera qu’une fois, un peu comme
-  // componentDidMount()
-
   const fetchMessage = () => {
     getAllUserMessages(id, page).then(
       (res) => {
@@ -34,14 +29,10 @@ const AccountMessagesContainer = ({ ...params }) => {
           setError(404);
           setIsLoaded(true);
         } else {
-          //console.log(res.statusText);
           setError(res.statusText);
           setIsLoaded(true);
         }
       },
-      // Remarque : il faut gérer les erreurs ici plutôt que dans
-      // un bloc catch() afin que nous n’avalions pas les exceptions
-      // dues à de véritables bugs dans les composants.
       (error) => {
         setError(error);
         setIsLoaded(true);
@@ -55,7 +46,6 @@ const AccountMessagesContainer = ({ ...params }) => {
   }, [page, refetch]);
 
   const handleErase = () => {
-    // setPage((page) => page = 0)
     setMessages((messages) => (messages = []));
     setIsLoaded(false);
     setRefetch(true);

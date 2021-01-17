@@ -4,20 +4,20 @@ import {
   deleteAccount,
   logout,
 } from "../../_utils/auth/auth.functions";
-import {userDeleted} from "../../_utils/toasts/users"
+import { userDeleted } from "../../_utils/toasts/users";
 import { useHistory } from "react-router-dom";
 
 const Account = ({ ...account }) => {
   const history = useHistory();
 
   const onClickDeleteAccount = (e) => {
-    console.log(account.isAdmin);
     e.preventDefault();
     if (window.confirm("Are you sure you want to delete this account?")) {
       if (account.isAdmin) {
-        deleteAccount(account.id);
         userDeleted();
-        history.push(`/account${account.id}`);
+        deleteAccount(account.id);
+        account.onDeletedAccount();
+        history.push(`/account/${account.id}`);
       } else {
         logout();
         userDeleted();
@@ -46,15 +46,11 @@ const Account = ({ ...account }) => {
           <div className="text-muted h7 mb-2">
             {" "}
             <i className="fa fa-clock-o" />
-            {/* {(Date.now() - Date.parse(message.createdAt))} */}
             {" Membre depuis le " +
               functions.convertDateForHuman(account.createdAt)}
           </div>
 
           <h2 className="h5 card-title">Informations:</h2>
-
-          {/* <p className="card-text">Id : {account.id}</p> */}
-
           <p className="card-text">Nom : {account.name}</p>
           <p className="card-text">Prénom: {account.surname}</p>
           <p className="card-text">

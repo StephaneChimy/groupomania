@@ -10,8 +10,7 @@ const PostMessage = ({ onPost }) => {
   async function SendData(e) {
     e.preventDefault();
     console.log(titleValue, contentValue);
-    //useEffect(() => {
-    // POST request using fetch inside useEffect React hook
+
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -23,25 +22,18 @@ const PostMessage = ({ onPost }) => {
     };
     await fetch("http://localhost:3000/api/messages/new", requestOptions)
       .then((response) => {
-        //console.log(response.status);
         if (response.status !== 201) {
-          // Actualisation?
-          // setMessageSent(false);
+
         } else {
-          // setMessageSent(true);
           onPost();
           setTitleValue("");
           setContentValue("");
           toastMessagePosted();
-          // console.log(messageSent);
         }
       })
 
-      //.then((response) => response.json())
       .catch((error) => console.log(error));
 
-    // empty dependency array means this effect will only run once (like componentDidMount in classes)
-    // }, []);
   }
 
   return (
@@ -64,7 +56,7 @@ const PostMessage = ({ onPost }) => {
                     className="form-control"
                     placeholder="Title?"
                     value={titleValue}
-                    pattern={REGEX.NAME_REGEX}
+                    pattern={REGEX.TITLE_REGEX}
                     title="Character a à Z"
                     onChange={(event) => setTitleValue(event.target.value)}
                   />

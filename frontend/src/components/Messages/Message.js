@@ -12,7 +12,6 @@ const Message = ({ ...message }) => {
   };
 
   return (
-    //  <div className="col-11 mb-3">
     <div className="card">
       <div className="card-header">
         <div className="justify-content-between align-items-center">
@@ -31,7 +30,6 @@ const Message = ({ ...message }) => {
         <div className="text-muted h7 mb-2">
           {" "}
           <i className="fa fa-clock-o" />
-          {/* {(Date.now() - Date.parse(message.createdAt))} */}
           {" " + globalFunctions.convertDateForHuman(message.createdAt)}
         </div>
         <a className="card-link" href={"/messages/" + message.id}>
@@ -70,7 +68,6 @@ const Message = ({ ...message }) => {
         )}
       </div>
     </div>
-    //</div>
   );
 };
 

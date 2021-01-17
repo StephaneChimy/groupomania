@@ -15,9 +15,6 @@ const LoginForm = ({ onLogin }) => {
     }
   }, [history]);
 
-  //useEffect(() => {
-  // POST request using fetch inside useEffect React hook
-
   const sendData = (e) => {
     e.preventDefault();
     console.log(emailValue, passwordValue);
@@ -34,7 +31,6 @@ const LoginForm = ({ onLogin }) => {
     console.log(requestOptions);
 
     fetch("http://localhost:3000/api/auth/login", requestOptions)
-      //.then((response) => console.log(response))
       .then((response) => {
         if (response.status === 200) {
           // Redirect
@@ -46,9 +42,6 @@ const LoginForm = ({ onLogin }) => {
       })
       .catch((error) => console.log(error));
   };
-
-  // empty dependency array means this effect will only run once (like componentDidMount in classes)
-  // }, []);
 
   return (
     <section className="row mx-auto justify-content-center">
