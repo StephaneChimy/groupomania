@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import Account from "./Account";
 import AccountEdit from "./AccountEdit";
 // import UserMessages from "./UsersMessages";
-import MessagesContainer from "../Messages/MessagesContainer";
+// import MessagesContainer from "../Messages/MessagesContainer";
+import AccountMessagesContainer from "./AccountMessagesContainer";
 import { useParams } from "react-router-dom";
 import { getAccount } from "../../_utils/auth/auth.functions";
 import { NoUserFound } from "../Infos/NotFound";
@@ -57,9 +58,7 @@ const AccountContainer = (params) => {
     fetchAccount();
   };
 
-  // const handlePost = () => {
-  //   fetchAccount()
-  // }
+
   if (error && error === 404) {
     return (
       <div>
@@ -83,7 +82,7 @@ const AccountContainer = (params) => {
             ) : null}
           </section>
           {!params.editor ? (
-            <MessagesContainer messageQuery="getAllUserMessages" />
+            <AccountMessagesContainer />
           ) : null}
         </React.Fragment>
       )

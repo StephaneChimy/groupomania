@@ -1,16 +1,13 @@
 import globalFunctions from "../../_utils/_functions";
 import { deleteOneMessage } from "../../_utils/messages/messages.functions";
-import { useHistory } from "react-router-dom";
 
 const Message = ({ ...message }) => {
-  const history = useHistory();
 
   const onClickDeleteMessage = (e) => {
     e.preventDefault();
     if(window.confirm("Are you sure you want to delete this message?")){
       deleteOneMessage(message.id) 
       message.onErase() 
-      history.push("/");
     }
   };
 
