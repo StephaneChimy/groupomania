@@ -8,7 +8,6 @@ router.get("/", auth, messageCtrl.getAllMessages);
 router.get("/userMessages/:id", auth, messageCtrl.getUserAllMessages);
 router.post("/new", auth, messageCtrl.createMessage);
 router.get("/:id", auth, messageCtrl.getOneMessage);
-//router.put('/:id',auth, multer, messageCtrl.modifyMessage);
 router.delete('/:id',auth, messageCtrl.deleteMessage);
 
 

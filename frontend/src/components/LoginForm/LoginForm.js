@@ -53,30 +53,29 @@ const LoginForm = ({ onLogin }) => {
   return (
     <section className="row mx-auto justify-content-center">
       <div className="card col-11">
-        <img className="card-img-top mx-auto col-8" src={logo} alt="logo of the company Groupomania" />
+        <img className="card-img-top mx-auto col-8" src={logo} alt="logo and name of the company Groupomania" />
         <div className="card-body">
           <h2 className="h5 card-title text-center">Login</h2>
           <form onSubmit={sendData}>
             <div className="form-group">
-              <label htmlFor="exampleInputEmail1">Email address</label>
+              <label htmlFor="email">Email address</label>
               <input
                 name="email"
                 type="email"
                 className="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
+                id="email"
                 placeholder="Enter email"
                 value={emailValue}
                 onChange={(event) => setEmailValue(event.target.value)}
               />
             </div>
             <div className="form-group">
-              <label htmlFor="exampleInputPassword1">Password</label>
+              <label htmlFor="password">Password</label>
               <input
                 name="password"
                 type="password"
                 className="form-control"
-                id="exampleInputPassword1"
+                id="password"
                 placeholder="Password"
                 value={passwordValue}
                 onChange={(event) => setPasswordValue(event.target.value)}
