@@ -14,14 +14,14 @@ const Account = ({ ...account }) => {
     e.preventDefault();
     if (window.confirm("Are you sure you want to delete this account?")) {
       if (account.isAdmin) {
-        userDeleted();
         deleteAccount(account.id);
+        userDeleted();
         account.onDeletedAccount();
         history.push(`/account/${account.id}`);
       } else {
+        deleteAccount(account.id);
         logout();
         userDeleted();
-        deleteAccount(account.id);
         account.onLogout();
         history.push("/");
       }

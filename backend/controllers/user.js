@@ -235,7 +235,6 @@ exports.getUserProfile = (req, res, next) => {
         } else {
           res.status(200).json(user);
         }
-        res.status(200).json(user);
       } else if (user) {
         res.status(200).json(user);
       }
@@ -302,6 +301,9 @@ exports.deleteUserProfile = (req, res) => {
   })
     .then((user) => {
       console.log(user.id);
+      console.log(userInfos.userId);
+      console.log(userInfos.admin);
+      
 
       if ((user && user.id === userInfos.userId) || userInfos.admin === true) {
         async function destroyUser(userId) {
