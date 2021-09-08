@@ -62,7 +62,7 @@
     <a href="https://github.com/StephaneChimy/groupomania"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/StephaneChimy/groupomania">View Demo</a>
+    <a href="https://groupomania.stephane-chimy.com/">View Demo</a>
     ·
     <a href="https://github.com/StephaneChimy/groupomania/issues">Report Bug</a>
     ·
