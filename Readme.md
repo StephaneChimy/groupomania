@@ -79,6 +79,7 @@
     <li>
     <a href="#about-the-project">About The Project</a>
       <ul>
+        <li><a href="#objectives">Objectives</a></li>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -107,7 +108,8 @@
 
 Le projet consiste à construire un réseau social interne pour les employés de Groupomania. Le but de cet outil est de faciliter les interactions entre collègues. Le département RH de Groupomania a laissé libre cours à son imagination pour les fonctionnalités du réseau et a imaginé plusieurs briques pour favoriser les échanges entre collègues. Ils veulent que les employés écrivent et / ou partagent des articles avec leurs collègues sur des sujets qui les intéressent.
 
-CONTRAINTES
+CONTRAINTES:
+
 * Le client utilise une base de données relationnelles qui se manipule avec le langage SQL pour le stockage de données.
 * La web app puisse se connecter et se déconnecter à l’application et que la session de l’utilisateur persiste pendant qu’il est connecté.
 * Le projet doit être codé en Javascript
@@ -119,6 +121,14 @@ CONTRAINTES
 * Les utilisateurs doivent pouvoir facilement repérer les dernières participations des employés.
 * Le ou la chargé-e de communication Groupomania doit pouvoir modérer les interactions entre le ou la chargé-e de communication Groupomania doit pouvoir afficher les dernières participations des employés salariés .
 
+
+
+### 🎯 Objectives <a name = "objectives"></a>
+
+* Gérer un stockage de données à l'aide de SQL
+* Personnaliser le contenu envoyé à un client web
+* Implémenter un stockage de données sécurisé en utilisant SQL
+* Authentifier un utilisateur et maintenir sa session
 
 
 
