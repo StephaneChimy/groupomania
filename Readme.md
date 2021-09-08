@@ -51,7 +51,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/StephaneChimy/groupomania">
-    <img src="frontend/src/images/icon.png" alt="Logo" width="320">
+    <img src="frontend/src/images/icon.png" alt="Logo" width="150">
   </a>
 
   <h1 align="center">Groupomania</h1>
@@ -59,8 +59,8 @@
   <p align="center">
     Création d'un réseau social d'entreprise
     <br />
-    <br />
     <a href="https://github.com/StephaneChimy/groupomania"><strong>Explore the docs »</strong></a>
+    <br />
     <br />
     <a href="https://github.com/StephaneChimy/groupomania">View Demo</a>
     ·
